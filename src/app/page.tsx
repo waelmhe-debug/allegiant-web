@@ -29,6 +29,13 @@ export default function HomePage() {
         title="Trusted home care for families across Rochester, MN"
         subtitle="When a loved one needs support at home — after a hospital stay, during recovery, or as they age — Allegiant is here. Personalized care, local caregivers, and a team that answers when you call."
         primaryCta={{ label: "Request a free care consultation", href: "/contact" }}
+        image={{
+          src: "/images/hero-homepage.jpg",
+          alt: "A senior woman smiling in her living room at home in Rochester, Minnesota",
+          width: 3840,
+          height: 2558,
+          priority: true,
+        }}
       />
       <TrustBar />
       <DualPathCards />
@@ -58,7 +65,15 @@ export default function HomePage() {
       <ServiceAreaList />
       <TestimonialsPlaceholder />
       <FAQ items={HOME_FAQS} />
-      <CTABlock />
+      <CTABlock
+        bgImage={{
+          src: "/images/cta-closing.jpg",
+          alt: "",
+          width: 3840,
+          height: 5760,
+          objectPosition: "center 75%",
+        }}
+      />
 
       <JsonLd data={faqSchema(HOME_FAQS)} />
     </>

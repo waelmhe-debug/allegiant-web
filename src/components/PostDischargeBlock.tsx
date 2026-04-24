@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HeartPulse, Clock } from "lucide-react";
 
@@ -5,17 +6,32 @@ export function PostDischargeBlock() {
   return (
     <section
       aria-labelledby="post-discharge-heading"
-      className="relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(170deg, var(--color-teal-700) 0%, var(--color-teal-800) 100%)",
-      }}
+      className="relative overflow-hidden isolate"
+      style={{ background: "var(--color-teal-900)" }}
     >
-      <div className="container-page py-16 md:py-20 grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
+      <Image
+        src="/images/post-discharge.jpg"
+        alt="A caregiver holds hands with an elderly man at home, offering reassurance during recovery"
+        width={3840}
+        height={2560}
+        sizes="100vw"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: "center 40%" }}
+      />
+      {/* Dark teal gradient overlay — heavier on left where copy sits */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(10, 36, 45, 0.88) 0%, rgba(15, 51, 64, 0.82) 50%, rgba(15, 51, 64, 0.62) 100%)",
+        }}
+      />
+      <div className="relative container-page py-16 md:py-20 grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
         <div>
           <div
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
-            style={{ background: "rgba(255,255,255,0.1)", color: "#F1D9B7" }}
+            style={{ background: "rgba(255,255,255,0.12)", color: "#F1D9B7" }}
           >
             <HeartPulse className="h-3.5 w-3.5" aria-hidden />
             Post-discharge support
@@ -30,7 +46,7 @@ export function PostDischargeBlock() {
             <Link href="/services/transitional-post-discharge-care" className="btn btn-accent">
               Talk to us about transitional care
             </Link>
-            <div className="inline-flex items-center gap-2 text-sm" style={{ color: "#BBD3D8" }}>
+            <div className="inline-flex items-center gap-2 text-sm" style={{ color: "#D6E6EA" }}>
               <Clock className="h-4 w-4" aria-hidden />
               Most consultations scheduled within 24 hours
             </div>
@@ -39,7 +55,11 @@ export function PostDischargeBlock() {
 
         <div
           className="card p-6 md:p-8 hidden md:block"
-          style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.12)" }}
+          style={{
+            background: "rgba(10, 36, 45, 0.55)",
+            borderColor: "rgba(255,255,255,0.18)",
+            backdropFilter: "blur(6px)",
+          }}
         >
           <h3 className="font-serif text-xl" style={{ color: "#fff" }}>What we help with</h3>
           <ul className="mt-4 space-y-2 text-[0.975rem]" style={{ color: "#E6EFF2" }}>

@@ -20,6 +20,14 @@ export default function AboutPage() {
         subtitle="Allegiant Home Care was founded in Rochester, Minnesota to provide families with home care that feels personal — not transactional."
         primaryCta={{ label: "Request a free consultation", href: "/contact" }}
         showTrust={false}
+        coverImage={{
+          src: "/images/about-hero.jpg",
+          alt: "A compassionate caregiver helps an elderly client at home",
+          width: 3840,
+          height: 2560,
+          priority: true,
+          objectPosition: "center 30%",
+        }}
       />
 
       <section className="container-page py-16 md:py-20 max-w-3xl">

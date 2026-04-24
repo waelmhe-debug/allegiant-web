@@ -4,11 +4,12 @@ import { Phone, MessageSquare, Mail } from "lucide-react";
 import { CONTACT } from "@/lib/site";
 import { pushEvent } from "@/lib/analytics";
 
-type Variant = "primary" | "secondary" | "ghost" | "plain";
+type Variant = "primary" | "secondary" | "accent" | "ghost" | "plain";
 
 const variantClass: Record<Variant, string> = {
   primary: "btn btn-primary",
   secondary: "btn btn-secondary",
+  accent: "btn btn-accent",
   ghost: "btn btn-ghost",
   plain: "inline-flex items-center gap-2 font-semibold prose-a",
 };
@@ -27,7 +28,9 @@ export function CallButton({
       href={`tel:${CONTACT.phoneTel}`}
       onClick={() => pushEvent("phone_click", { phone: CONTACT.phoneDisplay })}
       className={`${variantClass[variant]} ${className}`}
-      aria-label={`Call Allegiant Home Care at ${CONTACT.phoneDisplay}`}
+      // Accessible name must start with the visible text so WCAG SC 2.5.3
+      // (Label in Name) passes — Lighthouse flagged this previously.
+      aria-label={`Call ${CONTACT.phoneDisplay} — Allegiant Home Care`}
     >
       <Phone className="h-4 w-4" aria-hidden />
       <span>{label ?? `Call ${CONTACT.phoneDisplay}`}</span>

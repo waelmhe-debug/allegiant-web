@@ -28,6 +28,18 @@ export default function CareersPage() {
         primaryCta={{ label: "Apply now", href: "#apply" }}
         showCall={false}
         showTrust={false}
+        coverImage={{
+          // Temporary reuse of the get-started photo — careers-hero.jpg reads
+          // as commercial kitchen, not home care. Replace when a better
+          // careers-specific photo is available.
+          src: "/images/get-started-hero.jpg",
+          alt: "A caregiver and senior client sharing a quiet moment at home",
+          width: 3840,
+          height: 2160,
+          priority: true,
+          objectPosition: "center 60%",
+          overlayOpacity: 0.5,
+        }}
       />
 
       <section className="container-page py-16 md:py-20">

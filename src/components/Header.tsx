@@ -1,14 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { NAV, CONTACT } from "@/lib/site";
 import { Logo } from "./Logo";
 import { pushEvent } from "@/lib/analytics";
 
+// Ad landing pages strip the main nav entirely so we don't compete with the
+// form's single conversion. Header keeps just logo + phone CTA on these routes.
+const MINIMAL_NAV_PATHS = new Set<string>(["/get-started", "/apply"]);
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname() || "/";
+  const minimal = MINIMAL_NAV_PATHS.has(pathname);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -17,6 +24,11 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Close mobile menu if the route changes while it's open
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -32,61 +44,68 @@ export function Header() {
           <Logo size="md" />
         </Link>
 
-        <nav aria-label="Primary" className="hidden md:flex items-center gap-1">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-2 rounded-md text-[0.95rem] font-medium hover:bg-[var(--color-teal-50)]"
-              style={{ color: "var(--color-ink-700)" }}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        {!minimal && (
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-1">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-3 py-2 rounded-md text-[0.95rem] font-medium hover:bg-[var(--color-teal-50)]"
+                style={{ color: "var(--color-ink-700)" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         <div className="flex items-center gap-2">
+          {/* Desktop (≥768px): full phone CTA with number */}
           <a
             href={`tel:${CONTACT.phoneTel}`}
             onClick={() => pushEvent("phone_click", { phone: CONTACT.phoneDisplay, location: "header" })}
-            className="btn btn-primary hidden sm:inline-flex text-sm"
+            className="btn btn-primary hidden md:inline-flex text-sm"
             style={{ padding: "0.625rem 1rem", minHeight: 44 }}
             aria-label={`Call ${CONTACT.phoneDisplay}`}
           >
             <Phone className="h-4 w-4" aria-hidden />
             <span>Call {CONTACT.phoneDisplay}</span>
           </a>
+
+          {/* Mobile (<768px): phone icon only */}
           <a
             href={`tel:${CONTACT.phoneTel}`}
             onClick={() => pushEvent("phone_click", { phone: CONTACT.phoneDisplay, location: "header-mobile" })}
-            className="btn btn-primary sm:hidden"
+            className="btn btn-primary md:hidden"
             style={{ padding: "0.5rem 0.75rem", minHeight: 44 }}
             aria-label={`Call ${CONTACT.phoneDisplay}`}
           >
             <Phone className="h-5 w-5" aria-hidden />
-            <span className="sr-only">Call us</span>
+            <span className="sr-only">Call {CONTACT.phoneDisplay}</span>
           </a>
 
-          <button
-            type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-md border"
-            style={{
-              minHeight: 44,
-              minWidth: 44,
-              borderColor: "var(--color-border)",
-              background: "#fff",
-            }}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
-          </button>
+          {!minimal && (
+            <button
+              type="button"
+              className="md:hidden inline-flex items-center justify-center rounded-md border"
+              style={{
+                minHeight: 44,
+                minWidth: 44,
+                borderColor: "var(--color-border)",
+                background: "#fff",
+              }}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+            </button>
+          )}
         </div>
       </div>
 
-      {open && (
+      {!minimal && open && (
         <div
           id="mobile-nav"
           className="md:hidden border-t"
