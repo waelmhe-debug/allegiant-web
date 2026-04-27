@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -15,17 +15,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Fraunces is the headline serif, loaded as a variable font so we can enable
-// the `opsz` (optical sizing) axis. Browsers then select display-optimized
-// glyphs at hero scale — softer terminals, refined stroke contrast — and
-// body-optimized glyphs in small H3/H4 contexts. Variable weight delivers
-// 100–900 in a single payload.
-const fraunces = Fraunces({
+// Lora is the headline serif — clean, traditional straight serifs that read
+// well at hero scale without the curved/wonky f-terminals of Fraunces.
+// Variable name is kept as --font-fraunces so the Tailwind theme token in
+// globals.css doesn't need to change.
+const lora = Lora({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
-  weight: "variable",
-  axes: ["opsz"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -61,7 +59,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${lora.variable}`}>
       <head>
         {GTM_ID ? (
           <Script id="gtm-base" strategy="afterInteractive">{`
