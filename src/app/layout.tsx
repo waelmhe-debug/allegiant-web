@@ -15,11 +15,17 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+// Fraunces is the headline serif, loaded as a variable font so we can enable
+// the `opsz` (optical sizing) axis. Browsers then select display-optimized
+// glyphs at hero scale — softer terminals, refined stroke contrast — and
+// body-optimized glyphs in small H3/H4 contexts. Variable weight delivers
+// 100–900 in a single payload.
 const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
+  weight: "variable",
+  axes: ["opsz"],
 });
 
 export const metadata: Metadata = {
