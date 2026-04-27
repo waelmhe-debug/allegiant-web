@@ -76,6 +76,12 @@ export function Footer() {
             <div>
               {CONTACT.address.city}, {CONTACT.address.region} {CONTACT.address.postalCode}
             </div>
+            <div className="pt-2">
+              <span style={{ color: "var(--color-ink-900)", fontWeight: 500 }}>Office:</span> {CONTACT.hours.office.short}
+            </div>
+            <div>
+              <span style={{ color: "var(--color-ink-900)", fontWeight: 500 }}>Care:</span> {CONTACT.hours.care.short}
+            </div>
           </address>
 
           {socialLinks.length > 0 && (

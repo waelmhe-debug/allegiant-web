@@ -18,8 +18,8 @@ const items = [
   },
   {
     Icon: ShieldCheck,
-    title: "Licensed, insured, and background-checked",
-    body: "Every caregiver on our team is screened, trained, and insured. Your loved one’s safety is the first thing we protect.",
+    title: "Licensed, trained, and background-checked",
+    body: "Every caregiver on our team is screened, licensed, and trained. Your loved one’s safety is the first thing we protect.",
   },
 ];
 

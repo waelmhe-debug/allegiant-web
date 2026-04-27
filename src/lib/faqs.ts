@@ -9,7 +9,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Are your caregivers screened and trained?",
-    a: "Yes. Every caregiver is background-checked, trained in core caregiving skills, and insured. We also continue training throughout their time with us.",
+    a: "Yes. Every caregiver is background-checked, licensed, and trained in core caregiving skills. We also continue training throughout their time with us.",
   },
   {
     q: "What if the caregiver isn't a good match?",
@@ -26,6 +26,10 @@ export const HOME_FAQS = [
   {
     q: "What areas do you serve?",
     a: "Rochester and surrounding communities, including Byron, Stewartville, Pine Island, Oronoco, Eyota, Chatfield, and Kasson. Call us if you're outside this area and we'll help you figure out next steps.",
+  },
+  {
+    q: "When can I reach Allegiant?",
+    a: "Our office is open Monday through Friday, 9 AM to 5 PM Central Time. Care services run 24/7 with scheduled caregivers — for urgent needs outside office hours, call (507) 218-8833 and follow the prompts.",
   },
   {
     q: "How do I reach you?",

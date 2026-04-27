@@ -57,7 +57,7 @@ export default function GetStartedPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <ShieldCheck className="h-5 w-5 mt-0.5 shrink-0" style={{ color: "var(--color-teal-600)" }} aria-hidden />
-                  <span>Licensed, insured, and background-checked caregivers</span>
+                  <span>Licensed, trained, and background-checked caregivers</span>
                 </li>
               </ul>
 

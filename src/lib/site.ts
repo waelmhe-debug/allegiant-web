@@ -22,8 +22,19 @@ export const CONTACT = {
     postalCode: "55902",
     country: "US",
   },
-  hours: "Monday–Friday, 8:00 AM – 6:00 PM CT",
-  hoursNote: "After-hours calls returned the next morning",
+  // Two-tier coverage model — office is staffed weekdays 9–5, but care visits
+  // run 24/7 with scheduled caregivers. Surface BOTH consistently across the
+  // site (Contact page = full text, Footer = condensed).
+  hours: {
+    office: {
+      full: "Monday – Friday, 9:00 AM – 5:00 PM (CT)",
+      short: "Mon–Fri, 9–5 CT",
+    },
+    care: {
+      full: "24/7 with scheduled caregivers",
+      short: "24/7 by schedule",
+    },
+  },
   // Approximate Rochester, MN coordinates for LocalBusiness schema
   geo: { latitude: 44.0121, longitude: -92.4802 },
 } as const;

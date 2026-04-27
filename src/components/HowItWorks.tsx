@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const steps = [
@@ -30,23 +31,47 @@ export function HowItWorks() {
           <div className="eyebrow">How it works</div>
           <h2 id="how-heading" className="mt-3">Getting started is simple</h2>
         </div>
-        <ol className="mt-10 grid md:grid-cols-3 gap-5 md:gap-6">
-          {steps.map((s) => (
-            <li key={s.num} className="card p-6 md:p-7">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-full font-semibold font-serif"
-                style={{ background: "var(--color-teal-600)", color: "#fff" }}
-                aria-hidden
-              >
-                {s.num}
-              </div>
-              <h3 className="mt-4 font-serif text-xl">{s.title}</h3>
-              <p className="mt-2" style={{ color: "var(--color-ink-700)" }}>
-                {s.body}
-              </p>
-            </li>
-          ))}
-        </ol>
+
+        <div className="mt-10 grid gap-8 md:gap-10 md:grid-cols-[2fr_3fr] items-start">
+          <div
+            className="relative w-full aspect-[4/3] overflow-hidden"
+            style={{
+              borderRadius: "var(--radius-xl)",
+              boxShadow: "var(--shadow-card)",
+            }}
+          >
+            <Image
+              src="/images/about-hero.jpg"
+              alt="A care coordinator meets with a family at home."
+              width={3840}
+              height={2560}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover w-full h-full"
+              style={{ objectPosition: "center 30%" }}
+            />
+          </div>
+
+          <ol className="grid gap-4 md:gap-5">
+            {steps.map((s) => (
+              <li key={s.num} className="card p-5 md:p-6 flex gap-4">
+                <div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-semibold font-serif"
+                  style={{ background: "var(--color-teal-600)", color: "#fff" }}
+                  aria-hidden
+                >
+                  {s.num}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-serif text-xl leading-tight">{s.title}</h3>
+                  <p className="mt-1.5" style={{ color: "var(--color-ink-700)" }}>
+                    {s.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         <div className="mt-10">
           <Link href="/contact" className="btn btn-primary">
             Start with a free consultation

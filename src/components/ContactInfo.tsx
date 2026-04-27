@@ -47,9 +47,9 @@ export function ContactInfo({ compact = false }: { compact?: boolean }) {
         <div className="mt-1 inline-flex items-start gap-2" style={{ color: "var(--color-ink-900)" }}>
           <Clock className="h-4 w-4 mt-1" style={{ color: "var(--color-teal-600)" }} aria-hidden />
           <span>
-            {CONTACT.hours}
+            <span className="font-medium">Office hours:</span> {CONTACT.hours.office.full}
             <br />
-            <span style={{ color: "var(--color-ink-700)" }}>{CONTACT.hoursNote}</span>
+            <span className="font-medium">Care services:</span> {CONTACT.hours.care.full}
           </span>
         </div>
       </div>
